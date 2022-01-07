@@ -1,0 +1,8 @@
+PyYAML==3.13
+numpy==1.19.5
+SoundFile==0.10.3.post1
+TensorFlowTTS==1.8
+keras==2.6.0
+django==3.2.2
+django-cors-headers==3.7.0
+djangorestframework==3.12.4

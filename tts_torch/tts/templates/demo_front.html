@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>I come from template!!</title>
+        <style>
+            body {
+               background-color: lightyellow;
+            }
+            em {
+                color: LightSeaGreen;
+            }
+        </style>
+    </head>
+    <body>
+<!--       <form  action='' method="POST">-->
+            {% csrf_token %}
+            <h2>input text here</h2>
+            <select id="lang">
+                <option value="ch">ch</option>
+                <option value="en">en</option>
+            </select>
+            <input type="text" id="text_input" name="text_input">
+            <input type="submit" id="send_btn" value="covert">
+
+<!--       </form>-->
+       <br><br>
+        <div id="plot1"> <p>等待你輸入喔~凸^^凸</p> </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $('#send_btn').click(function () {
+            var lang = $('#lang').val();
+            var text= $('#text_input').val();
+            $.ajax({
+                data: { 'lang': lang ,'text_input': text },
+                type: "POST",
+                url: '/tts_api/',
+                async: true,
+                success: function (result) {
+                    $('#plot1').empty();
+                    $('#plot1').append('<audio src="{% static 'audio_src/tmp.wav' %}" controls></audio>');
+
+                },
+                error: function (response) {
+                    alert(response.responseJSON.errors);
+                }
+            });
+        });
+    });
+</script>
+</html>

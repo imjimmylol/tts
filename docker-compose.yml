@@ -1,0 +1,29 @@
+version: "2"
+services:
+#    tts_service_torch:
+#        build:
+#            context: ./tts_torch
+#            dockerfile: Dockerfile
+#        image: tts_service_server_image
+#        container_name: tts_service_server_container
+#        restart: always
+#        volumes:
+#            - ./:/app
+#        expose:
+#            - 9999
+#        ports:
+#            - "19999:9999"
+
+    tts_service_tensorflow:
+        build:
+            context: ./tts_tensorflow/
+            dockerfile: Dockerfile
+        image: tts_service_tensorflow
+        container_name: tts_service_tensorflow_container
+        restart: always
+        volumes:
+            - ./tts_tensorflow/:/app
+        expose:
+            - 9998
+        ports:
+            - "19998:9998"
